@@ -11,15 +11,16 @@ namespace RollWithIt
     /// </summary>
     public class Die
     {
-        private IRandomGenerator _generator;
+        private IRandomGenerator _generator;        
         public int Sides { get; }
+        public int? FaceValue { get; private set; }
         public const int MINIMUM_SIDES = 2;
 
         /// <summary>
-        /// Create a die with the number of specified sides. Specified sides must be great or equal to 2.
+        /// Create a die with the number of specified sides. Specified sides must be great or equal to <see cref="MINIMUM_SIDES"/>.
         /// </summary>
         /// <param name="generator">Random number generator.</param>
-        /// <param name="sides">Number of sides. Unspecified default value is '2'.</param>
+        /// <param name="sides">Number of sides. Unspecified default value is <see cref="MINIMUM_SIDES"/>.</param>
         public Die(IRandomGenerator generator, int sides = MINIMUM_SIDES)
         {
             if (sides < MINIMUM_SIDES)
@@ -27,14 +28,14 @@ namespace RollWithIt
             else
             {
                 _generator = generator;
-                Sides = sides;
+                Sides = sides;                
             }
         }
 
         /// <summary>
-        /// Create a die with the number of specified sides. Specified sides must be great or equal to 1.
+        /// Create a die with the number of specified sides. Specified sides must be great or equal to <see cref="MINIMUM_SIDES"/>.
         /// </summary>
-        /// <param name="sides">Number of sides. Unspecified default value is '2'.</param>
+        /// <param name="sides">Number of sides. Unspecified default value is <see cref="MINIMUM_SIDES"/>.</param>
         public Die(int sides = MINIMUM_SIDES) : this(new SystemRandom(), sides)
         {
 
@@ -44,10 +45,9 @@ namespace RollWithIt
         /// 'Roll' the die and return a random side value (1-based).
         /// </summary>
         /// <returns>Random side value.</returns>
-        public int Roll()
+        public void Roll()
         {
-            int result = _generator.Next(1, Sides);
-            return result;
+            FaceValue = _generator.Next(1, Sides);
         }
     }
 }

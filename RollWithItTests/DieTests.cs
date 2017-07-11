@@ -16,9 +16,9 @@ namespace RollWithIt.Tests
         public void RollTestSystemRandom()
         {
             var die = new Die();
-            int result = die.Roll();
+            die.Roll();
 
-            Assert.True(result >= 1 && result <= 2);            
+            Assert.True(die.FaceValue >= 1 && die.FaceValue <= 2);            
         }
 
         [Fact]
@@ -26,9 +26,9 @@ namespace RollWithIt.Tests
         {
             var generator = new MockRandom();
             var die = new Die(generator, 6);
-            int result = die.Roll();
+            die.Roll();
 
-            Assert.True(result == 1);
+            Assert.True(die.FaceValue == MockRandom.DEFAULT_VALUE);
         }
 
         [Fact]
