@@ -18,7 +18,7 @@ namespace RollWithIt.Tests
             var die = new Die();
             int result = die.Roll();
 
-            Assert.True(result >= 1 && result <= 6);            
+            Assert.True(result >= 1 && result <= 2);            
         }
 
         [Fact]
