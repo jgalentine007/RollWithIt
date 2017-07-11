@@ -19,7 +19,7 @@ namespace RollWithIt.Tests
             var die = new Die(generator);
             var shaker = new Shaker();
             shaker.AddDie(die);
-            Assert.True(shaker.dice.Count == 1);
+            Assert.True(shaker.Dice.Count == 1);
         }
 
         [Fact]
@@ -30,7 +30,18 @@ namespace RollWithIt.Tests
             var shaker = new Shaker();
             shaker.AddDie(die);
             shaker.Shake();
-            Assert.True(shaker.dice.First().FaceValue == MockRandom.DEFAULT_VALUE);
+            Assert.True(shaker.Dice.First().FaceValue == MockRandom.DEFAULT_VALUE);
+        }
+
+        [Fact]
+        public void EmptyTest()
+        {
+            var generator = new MockRandom();
+            var die = new Die(generator);
+            var shaker = new Shaker();
+            shaker.AddDie(die);
+            shaker.Empty();
+            Assert.True(shaker.Dice.Count == 0);
         }
     }
 }
