@@ -6,19 +6,22 @@ using System.Threading.Tasks;
 
 namespace RollWithIt
 {
+    /// <summary>
+    /// A multi sided playing dice.
+    /// </summary>
     public class Die
     {
         private IRandomGenerator _generator;
         public int Sides { get; }
-        
+
         /// <summary>
-        /// Create a die with the number of specified sides. Specified sides must be great or equal to 1.
+        /// Create a die with the number of specified sides. Specified sides must be great or equal to 2.
         /// </summary>
         /// <param name="generator">Random number generator.</param>
-        /// <param name="sides">Number of sides</param>
-        public Die(IRandomGenerator generator, int sides)
+        /// <param name="sides">Number of sides. Unspecified default value is '6'.</param>
+        public Die(IRandomGenerator generator, int sides = 6)
         {
-            if (sides < 1)
+            if (sides <= 2)
                 throw new ArgumentOutOfRangeException();
             else
             {
@@ -37,7 +40,7 @@ namespace RollWithIt
         }
 
         /// <summary>
-        /// 'Roll' the die and return a random side value.
+        /// 'Roll' the die and return a random side value (1-based).
         /// </summary>
         /// <returns>Random side value.</returns>
         public int Roll()

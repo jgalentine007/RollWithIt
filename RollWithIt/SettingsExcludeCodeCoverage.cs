@@ -7,6 +7,9 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace RollWithIt.Properties
 {
+    /// <summary>
+    /// Partial stub to exclude this class from code coverage.
+    /// </summary>
     [ExcludeFromCodeCoverage]
     internal sealed partial class Settings
     {

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RollWithIt
 {
+    /// <summary>
+    /// System random number generator.
+    /// </summary>
     public class SystemRandom : IRandomGenerator
     {
         /// <summary>

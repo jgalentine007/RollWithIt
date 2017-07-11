@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RollWithIt
 {
+    /// <summary>
+    /// Deterministic mock random number generator.
+    /// </summary>
     public class MockRandom : IRandomGenerator
     {
         /// <summary>
