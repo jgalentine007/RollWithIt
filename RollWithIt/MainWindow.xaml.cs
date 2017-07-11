@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics.CodeAnalysis;
 
 namespace RollWithIt
 {
@@ -19,7 +20,8 @@ namespace RollWithIt
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
+    {        
+        [ExcludeFromCodeCoverage]
         public MainWindow()
         {
             InitializeComponent();
