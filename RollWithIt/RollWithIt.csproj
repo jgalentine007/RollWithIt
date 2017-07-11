@@ -57,6 +57,7 @@
     </ApplicationDefinition>
     <Compile Include="MockRandom.cs" />
     <Compile Include="SettingsExcludeCodeCoverage.cs" />
+    <Compile Include="Shaker.cs" />
     <Compile Include="SystemRandom.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
