@@ -16,17 +16,17 @@ namespace RollWithIt.Tests
         public void RollTestSystemRandom()
         {
             var generator = new SystemRandom();
-            var die = new Die(generator);
+            var die = new Die(generator, DieShape.D6);
             die.Roll();
 
-            Assert.True(die.FaceValue >= 1 && die.FaceValue <= 2);            
+            Assert.True(die.FaceValue >= 1 && die.FaceValue <= (int)DieShape.D6);            
         }
 
         [Fact]
         public void RollTestMockRandom()
         {
             var generator = new MockRandom();
-            var die = new Die(generator, 6);
+            var die = new Die(generator, DieShape.D6);
             die.Roll();
 
             Assert.True(die.FaceValue == MockRandom.DEFAULT_VALUE);
@@ -36,7 +36,7 @@ namespace RollWithIt.Tests
         public void RollTestInvalidSides()
         {
             var generator = new MockRandom();
-            Assert.Throws<ArgumentOutOfRangeException>(() => new Die(generator, 0));
+            Assert.Throws<ArgumentException>(() => new Die(generator, 0));
         }
     }
 }

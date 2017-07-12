@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Diagnostics.CodeAnalysis;
 
 namespace RollWithIt
 {
+    [ExcludeFromCodeCoverage]
     public class DelegateCommand : ICommand
     {
         private Action _executeMethod;

@@ -6,6 +6,15 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 namespace RollWithIt
 {
+    public enum DieShape
+    {
+        D4 = 4,
+        D6 = 6,
+        D8 = 8,
+        D12 = 12,
+        D20 = 20
+    }
+
     /// <summary>
     /// A multi sided playing dice.
     /// </summary>
@@ -14,29 +23,23 @@ namespace RollWithIt
         public event PropertyChangedEventHandler PropertyChanged;
 
         private IRandomGenerator _generator;
-        public int Sides { get; set; }
+        public DieShape Shape { get; set; }
         public int? FaceValue { get; private set; }
-
-        private const int _MINIMUM_SIDES = 2;
-        public int MINIMUM_SIDES { get { return _MINIMUM_SIDES; } }
-
-        private const int _MAXIMUM_SIDES = 20;
-        public int MAXIMUM_SIDES { get { return _MAXIMUM_SIDES; } }
-
+                
         /// <summary>
         /// Create a die with the number of specified sides. Specified sides must be great or equal to <see cref="_MINIMUM_SIDES"/>.
         /// </summary>
         /// <param name="generator">Random number generator.</param>
         /// <param name="sides">Number of sides. Unspecified default value is <see cref="_MINIMUM_SIDES"/>.</param>
-        public Die(IRandomGenerator generator, int sides = _MINIMUM_SIDES)
+        public Die(IRandomGenerator generator, DieShape shape = DieShape.D6)
         {
-            if (sides < _MINIMUM_SIDES)
-                throw new ArgumentOutOfRangeException();
-            else
+            if (System.Enum.IsDefined(typeof(DieShape), shape))
             {
                 _generator = generator;
-                Sides = sides;                
+                Shape = shape;
             }
+            else
+                throw new ArgumentException();
         }
 
         /// <summary>
@@ -45,7 +48,7 @@ namespace RollWithIt
         /// <returns>Random side value.</returns>
         public void Roll()
         {
-            FaceValue = _generator.Next(1, Sides + 1);
+            FaceValue = _generator.Next(1, (int)Shape + 1);
         }
     }
 }
