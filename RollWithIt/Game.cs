@@ -12,7 +12,7 @@ namespace RollWithIt
     /// <summary>
     /// Game view model.
     /// </summary>
-    class Game : INotifyPropertyChanged 
+    public class Game : INotifyPropertyChanged 
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -20,19 +20,19 @@ namespace RollWithIt
         private DelegateCommand _shakeCommand;
         public ICommand ShakeCommand { get { return _shakeCommand; }}
 
-        private IRandomGenerator _chaos;
+        private IRandomGenerator _generator;
         public Die Die1 { get; set; }
         public Die Die2 { get; set; }
         public Shaker Shaker { get; set; }
 
-        public Game()
+        public Game(IRandomGenerator generator)
         {
             // commands
             _shakeCommand = new DelegateCommand(Shake);
-            _chaos = new SystemRandom();
+            _generator = generator;
 
-            Die1 = new Die(_chaos);
-            Die2 = new Die(_chaos);
+            Die1 = new Die(_generator);
+            Die2 = new Die(_generator);
             Shaker = new Shaker();
         }
 

@@ -16,10 +16,10 @@ namespace RollWithIt.Tests
         public void RollTestSystemRandom()
         {
             var generator = new SystemRandom();
-            var die = new Die(generator);
+            var die = new Die(generator, DieShape.D6);
             die.Roll();
 
-            Assert.True(die.FaceValue >= 1 && die.FaceValue <= 2);            
+            Assert.True(die.FaceValue >= 1 && die.FaceValue <= (int)DieShape.D6);            
         }
 
         [Fact]
