@@ -48,8 +48,6 @@ namespace RollWithIt
             Shaker.Shake();
             SoundPlayer simpleSound = new SoundPlayer("shake-bake.wav");
             simpleSound.Play();
-
-
         }
     }
 }

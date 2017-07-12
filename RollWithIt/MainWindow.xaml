@@ -65,10 +65,10 @@
                 </EventTrigger>
             </Button.Triggers>
         </Button>
-        <Label Content="Die Shape:" HorizontalAlignment="Center" Grid.Column="0" VerticalAlignment="Top"/>
-        <Label Content="Die Shape:" HorizontalAlignment="Center" Grid.Column="1" VerticalAlignment="Top"/>
-        <Label Content="{Binding Die1.FaceValue}" Grid.Column="0" ContentStringFormat="Face Value: {0}" HorizontalAlignment="Center" Margin="0,65,0,0" VerticalAlignment="Top"/>
-        <Label Content="{Binding Die2.FaceValue}" Grid.Column="1" ContentStringFormat="Face Value: {0}" HorizontalAlignment="Center" Margin="0,65,0,0" VerticalAlignment="Top" />
+        <Label Content="Die One:" HorizontalAlignment="Center" Grid.Column="0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Die Two:" HorizontalAlignment="Center" Grid.Column="1" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="{Binding Die1.FaceValue}" Grid.Column="0" ContentStringFormat="Face Value: {0}" HorizontalAlignment="Center" Margin="0,65,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="{Binding Die2.FaceValue}" Grid.Column="1" ContentStringFormat="Face Value: {0}" HorizontalAlignment="Center" Margin="0,65,0,0" VerticalAlignment="Top" FontWeight="Bold" />
         <ComboBox Name="Die1Shape" HorizontalAlignment="Center" Grid.Column="0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Source={StaticResource ResourceKey=enumValues}}" SelectedValue="{Binding Die1.Shape}" Margin="0,30,0,0" SelectionChanged="Die1Shape_SelectionChanged"/>
         <ComboBox Name="Die2Shape" HorizontalAlignment="Center" Grid.Column="1" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Source={StaticResource ResourceKey=enumValues}}" SelectedValue="{Binding Die2.Shape}" Margin="0,30,0,0" SelectionChanged="Die2Shape_SelectionChanged"/>
         <Viewport3D Grid.Column="0">

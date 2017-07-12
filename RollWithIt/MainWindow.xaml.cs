@@ -21,9 +21,9 @@ namespace RollWithIt
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public partial class MainWindow : Window
     {
-        [ExcludeFromCodeCoverage]
         public MainWindow()
         {
             InitializeComponent();
@@ -43,7 +43,7 @@ namespace RollWithIt
         }
 
         private void Die1Shape_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        {            
             ChangeDie(Die1Display, (DieShape)Die1Shape.SelectedValue, Colors.Blue);
         }
 
