@@ -11,6 +11,7 @@ namespace RollWithIt
     /// </summary>
     public class SystemRandom : IRandomGenerator
     {
+        Random rand = new Random();
         /// <summary>
         /// Return a random integer within a specified range using the System Random class.
         /// </summary>
@@ -19,7 +20,6 @@ namespace RollWithIt
         /// <returns>Random integer.</returns>
         public int Next(int minValue, int maxValue)
         {
-            var rand = new Random();
             return rand.Next(minValue, maxValue);
         }
     }

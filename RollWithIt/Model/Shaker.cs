@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel;
 
-namespace RollWithIt
+namespace RollWithIt.Model
 {
     /// <summary>
     /// A dice shaker, ala Boggle.
     /// </summary>
-    public class Shaker : INotifyPropertyChanged
+    public class Shaker
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public ICollection<Die> Dice { get; private set; }
 
         /// <summary>

@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RollWithIt"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
         
+        Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <local:Game></local:Game></Window.DataContext>
+    <Grid>
+        <Button Content="Shake!" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="75" Command="{Binding ShakeCommand}"/>
+        <Slider x:Name="Die1" HorizontalAlignment="Left" Margin="54,69,0,0" VerticalAlignment="Top" Width="85" Value="{Binding Die1.Sides}" Minimum="{Binding Die1.MINIMUM_SIDES}" Maximum="{Binding Die1.MAXIMUM_SIDES}"/>
+        <Slider x:Name="Die2" HorizontalAlignment="Left" Margin="371,69,0,0" VerticalAlignment="Top" Width="85" Value="{Binding Die2.Sides}" Minimum="{Binding Die2.MINIMUM_SIDES}" Maximum="{Binding Die2.MAXIMUM_SIDES}"/>
+        <Label Content="{Binding Die1.Sides}" ContentStringFormat="Sides: {0}" HorizontalAlignment="Left" Margin="76,38,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding Die2.Sides}" ContentStringFormat="Sides: {0}" HorizontalAlignment="Left" Margin="393,38,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
