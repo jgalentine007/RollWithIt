@@ -3,19 +3,33 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:RollWithIt"
         mc:Ignorable="d"
         
-        Title="MainWindow" Height="350" Width="525">
+        Title="RollWithIt" Height="350" Width="525">
     <Window.DataContext>
-        <local:Game></local:Game></Window.DataContext>
+        <local:Game></local:Game>
+    </Window.DataContext>
+    <Window.Resources>
+        <ObjectDataProvider x:Key="enumValues"
+   MethodName="GetValues" ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local:DieShape"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
     <Grid>
-        <Button Content="Shake!" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="75" Command="{Binding ShakeCommand}"/>
-        <Slider x:Name="Die1" HorizontalAlignment="Left" Margin="54,69,0,0" VerticalAlignment="Top" Width="85" Value="{Binding Die1.Sides}" Minimum="{Binding Die1.MINIMUM_SIDES}" Maximum="{Binding Die1.MAXIMUM_SIDES}"/>
-        <Slider x:Name="Die2" HorizontalAlignment="Left" Margin="371,69,0,0" VerticalAlignment="Top" Width="85" Value="{Binding Die2.Sides}" Minimum="{Binding Die2.MINIMUM_SIDES}" Maximum="{Binding Die2.MAXIMUM_SIDES}"/>
-        <Label Content="{Binding Die1.Sides}" ContentStringFormat="Sides: {0}" HorizontalAlignment="Left" Margin="76,38,0,0" VerticalAlignment="Top"/>
-        <Label Content="{Binding Die2.Sides}" ContentStringFormat="Sides: {0}" HorizontalAlignment="Left" Margin="393,38,0,0" VerticalAlignment="Top"/>
-        <Label Content="{Binding Die1.FaceValue}" ContentStringFormat="Value: {0}" HorizontalAlignment="Left" Margin="93,124,0,0" VerticalAlignment="Top"/>
-        <Label Content="{Binding Die2.FaceValue}" ContentStringFormat="Value: {0}" HorizontalAlignment="Left" Margin="411,124,0,0" VerticalAlignment="Top" RenderTransformOrigin="31.9,1.658"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button Content="Shake!" HorizontalAlignment="Center" Margin="220,0,222,54" VerticalAlignment="Bottom" Width="75" Command="{Binding ShakeCommand}" Grid.ColumnSpan="2"/>
+        <Label Content="Die Shape:" HorizontalAlignment="Center" Grid.Column="0" VerticalAlignment="Top"/>
+        <Label Content="Die Shape:" HorizontalAlignment="Center" Grid.Column="1" VerticalAlignment="Top"/>
+        <Label Content="{Binding Die1.FaceValue}" Grid.Column="0" ContentStringFormat="Value: {0}" HorizontalAlignment="Center" Margin="0,65,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding Die2.FaceValue}" Grid.Column="1" ContentStringFormat="Value: {0}" HorizontalAlignment="Center" Margin="0,65,0,0" VerticalAlignment="Top" />
+        <ComboBox HorizontalAlignment="Center" Grid.Column="0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Source={StaticResource ResourceKey=enumValues}}" SelectedValue="{Binding Die1.Shape}" Margin="0,30,0,0"/>
+        <ComboBox HorizontalAlignment="Center" Grid.Column="1" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Source={StaticResource ResourceKey=enumValues}}" SelectedValue="{Binding Die2.Shape}" Margin="0,30,0,0"/>
     </Grid>
 </Window>
