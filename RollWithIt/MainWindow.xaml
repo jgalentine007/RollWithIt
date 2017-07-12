@@ -17,12 +17,12 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
 
-        <Storyboard x:Key="RotateStoryboard1">
+        <Storyboard x:Key="RotateStoryboard1" SpeedRatio="16">
             <Rotation3DAnimationUsingKeyFrames
-         BeginTime="00:00:00" RepeatBehavior="Forever"
+         BeginTime="00:00:00"
          Storyboard.TargetName="Die1Display"
          Storyboard.TargetProperty="(ModelVisual3D.Transform).(RotateTransform3D.Rotation)">
-                <SplineRotation3DKeyFrame KeyTime="00:00:02">
+                <SplineRotation3DKeyFrame KeyTime="00:00:04">
                     <SplineRotation3DKeyFrame.Value>
                         <AxisAngleRotation3D Angle="180" Axis="0,1,0"/>
                     </SplineRotation3DKeyFrame.Value>
@@ -34,12 +34,12 @@
                 </SplineRotation3DKeyFrame>
             </Rotation3DAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="RotateStoryboard2">
+        <Storyboard x:Key="RotateStoryboard2" SpeedRatio="16">
             <Rotation3DAnimationUsingKeyFrames
-         BeginTime="00:00:00" RepeatBehavior="Forever"
+         BeginTime="00:00:00"
          Storyboard.TargetName="Die2Display"
          Storyboard.TargetProperty="(ModelVisual3D.Transform).(RotateTransform3D.Rotation)">
-                <SplineRotation3DKeyFrame KeyTime="00:00:02">
+                <SplineRotation3DKeyFrame KeyTime="00:00:04">
                     <SplineRotation3DKeyFrame.Value>
                         <AxisAngleRotation3D Angle="-180" Axis="0,1,0"/>
                     </SplineRotation3DKeyFrame.Value>
@@ -52,27 +52,28 @@
             </Rotation3DAnimationUsingKeyFrames>
         </Storyboard>
     </Window.Resources>
-    <Window.Triggers>
-        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-            <BeginStoryboard Storyboard="{StaticResource RotateStoryboard1}"/>
-            <BeginStoryboard Storyboard="{StaticResource RotateStoryboard2}"/>
-        </EventTrigger>
-    </Window.Triggers>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button Content="Shake!" HorizontalAlignment="Center" Margin="220,0,222,54" VerticalAlignment="Bottom" Width="75" Command="{Binding ShakeCommand}" Grid.ColumnSpan="2"/>
+        <Button Content="Shake!" HorizontalAlignment="Center" Margin="220,0,222,54" VerticalAlignment="Bottom" Width="75" Command="{Binding ShakeCommand}" Grid.ColumnSpan="2">
+            <Button.Triggers>
+                <EventTrigger RoutedEvent="Button.Click" >
+                    <BeginStoryboard Storyboard="{StaticResource RotateStoryboard1}"/>
+                    <BeginStoryboard Storyboard="{StaticResource RotateStoryboard2}"/>
+                </EventTrigger>
+            </Button.Triggers>
+        </Button>
         <Label Content="Die Shape:" HorizontalAlignment="Center" Grid.Column="0" VerticalAlignment="Top"/>
         <Label Content="Die Shape:" HorizontalAlignment="Center" Grid.Column="1" VerticalAlignment="Top"/>
-        <Label Content="{Binding Die1.FaceValue}" Grid.Column="0" ContentStringFormat="Value: {0}" HorizontalAlignment="Center" Margin="0,65,0,0" VerticalAlignment="Top"/>
-        <Label Content="{Binding Die2.FaceValue}" Grid.Column="1" ContentStringFormat="Value: {0}" HorizontalAlignment="Center" Margin="0,65,0,0" VerticalAlignment="Top" />
+        <Label Content="{Binding Die1.FaceValue}" Grid.Column="0" ContentStringFormat="Face Value: {0}" HorizontalAlignment="Center" Margin="0,65,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding Die2.FaceValue}" Grid.Column="1" ContentStringFormat="Face Value: {0}" HorizontalAlignment="Center" Margin="0,65,0,0" VerticalAlignment="Top" />
         <ComboBox Name="Die1Shape" HorizontalAlignment="Center" Grid.Column="0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Source={StaticResource ResourceKey=enumValues}}" SelectedValue="{Binding Die1.Shape}" Margin="0,30,0,0" SelectionChanged="Die1Shape_SelectionChanged"/>
         <ComboBox Name="Die2Shape" HorizontalAlignment="Center" Grid.Column="1" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Source={StaticResource ResourceKey=enumValues}}" SelectedValue="{Binding Die2.Shape}" Margin="0,30,0,0" SelectionChanged="Die2Shape_SelectionChanged"/>
         <Viewport3D Grid.Column="0">
             <Viewport3D.Camera>
-                <PerspectiveCamera Position="0,4,-16" UpDirection="0,1,0" LookDirection="0,-.25,1" FieldOfView="45" NearPlaneDistance="0.125"/>
+                <PerspectiveCamera Position="0,4,-16" UpDirection="0,1,0" LookDirection="0,-.25,1" FieldOfView="15" NearPlaneDistance="0.125"/>
             </Viewport3D.Camera>
             <Viewport3D.Children>
                 <ModelVisual3D>
@@ -88,13 +89,13 @@
                             </RotateTransform3D.Rotation>
                         </RotateTransform3D>
                     </ModelVisual3D.Transform>
-                   
+
                 </ModelVisual3D>
             </Viewport3D.Children>
         </Viewport3D>
         <Viewport3D Grid.Column="1">
             <Viewport3D.Camera>
-                <PerspectiveCamera Position="0,4,-16" UpDirection="0,1,0" LookDirection="0,-.25,1" FieldOfView="45" NearPlaneDistance="0.125"/>
+                <PerspectiveCamera Position="0,4,-16" UpDirection="0,1,0" LookDirection="0,-.25,1" FieldOfView="15" NearPlaneDistance="0.125"/>
             </Viewport3D.Camera>
             <Viewport3D.Children>
                 <ModelVisual3D>

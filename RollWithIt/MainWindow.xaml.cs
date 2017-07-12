@@ -44,20 +44,21 @@ namespace RollWithIt
 
         private void Die1Shape_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var objs = Die1Display.Children.ToList();
-            foreach (var obj in objs) Die1Display.Children.Remove(obj);
-
-            var die = CreateDie((DieShape)Die1Shape.SelectedValue, Colors.Red);
-            Die1Display.Children.Add(die);
+            ChangeDie(Die1Display, (DieShape)Die1Shape.SelectedValue, Colors.Blue);
         }
 
         private void Die2Shape_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var objs = Die2Display.Children.ToList();
-            foreach (var obj in objs) Die2Display.Children.Remove(obj);
+            ChangeDie(Die2Display, (DieShape)Die2Shape.SelectedValue, Colors.Red);
+        }
 
-            var die = CreateDie((DieShape)Die2Shape.SelectedValue, Colors.Blue);
-            Die2Display.Children.Add(die);
+        private void ChangeDie(ModelVisual3D display, DieShape shape, Color color)
+        {
+            var objs = display.Children.ToList();
+            foreach (var obj in objs) display.Children.Remove(obj);
+
+            var die = CreateDie(shape, color);
+            display.Children.Add(die);
         }
     }
 }

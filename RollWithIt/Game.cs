@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Media;
 
 namespace RollWithIt
 {
@@ -45,6 +46,10 @@ namespace RollWithIt
             Shaker.AddDie(Die1);
             Shaker.AddDie(Die2);
             Shaker.Shake();
+            SoundPlayer simpleSound = new SoundPlayer("shake-bake.wav");
+            simpleSound.Play();
+
+
         }
     }
 }
