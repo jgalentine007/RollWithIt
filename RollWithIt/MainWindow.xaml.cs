@@ -31,6 +31,12 @@ namespace RollWithIt
             Die2Shape.SelectedItem = DieShape.D6;
         }
 
+        /// <summary>
+        /// Create a 3D Die
+        /// </summary>
+        /// <param name="shape">DieShape</param>
+        /// <param name="color">Color</param>
+        /// <returns>WPF 3D Object</returns>
         private Visual3D CreateDie(DieShape shape, Color color)
         {
             DiffuseMaterial material = new DiffuseMaterial(new SolidColorBrush(color));
@@ -42,16 +48,32 @@ namespace RollWithIt
             else throw new ArgumentException();
         }
 
+        /// <summary>
+        /// Change the selected shape for Die1.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Die1Shape_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {            
             ChangeDie(Die1Display, (DieShape)Die1Shape.SelectedValue, Colors.Blue);
         }
 
+        /// <summary>
+        /// Change the selected shape for Die2.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Die2Shape_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ChangeDie(Die2Display, (DieShape)Die2Shape.SelectedValue, Colors.Red);
         }
 
+        /// <summary>
+        /// Change the selected shape for a die.
+        /// </summary>
+        /// <param name="display"></param>
+        /// <param name="shape"></param>
+        /// <param name="color"></param>
         private void ChangeDie(ModelVisual3D display, DieShape shape, Color color)
         {
             var objs = display.Children.ToList();
