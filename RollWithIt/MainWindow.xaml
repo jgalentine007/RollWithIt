@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:RollWithIt"
+        xmlns:my="clr-namespace:Pacem.Media.Media3D;assembly=Pacem.Media"
         mc:Ignorable="d"
         
         Title="RollWithIt" Height="350" Width="525">
@@ -15,7 +16,48 @@
                 <x:Type TypeName="local:DieShape"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
+
+        <Storyboard x:Key="RotateStoryboard1">
+            <Rotation3DAnimationUsingKeyFrames
+         BeginTime="00:00:00" RepeatBehavior="Forever"
+         Storyboard.TargetName="Die1"
+         Storyboard.TargetProperty="(ModelVisual3D.Transform).(RotateTransform3D.Rotation)">
+                <SplineRotation3DKeyFrame KeyTime="00:00:02">
+                    <SplineRotation3DKeyFrame.Value>
+                        <AxisAngleRotation3D Angle="180" Axis="0,1,0"/>
+                    </SplineRotation3DKeyFrame.Value>
+                </SplineRotation3DKeyFrame>
+                <SplineRotation3DKeyFrame KeyTime="00:00:04">
+                    <SplineRotation3DKeyFrame.Value>
+                        <AxisAngleRotation3D Angle="359" Axis="0,1,0"/>
+                    </SplineRotation3DKeyFrame.Value>
+                </SplineRotation3DKeyFrame>
+            </Rotation3DAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="RotateStoryboard2">
+            <Rotation3DAnimationUsingKeyFrames
+         BeginTime="00:00:00" RepeatBehavior="Forever"
+         Storyboard.TargetName="Die2"
+         Storyboard.TargetProperty="(ModelVisual3D.Transform).(RotateTransform3D.Rotation)">
+                <SplineRotation3DKeyFrame KeyTime="00:00:02">
+                    <SplineRotation3DKeyFrame.Value>
+                        <AxisAngleRotation3D Angle="-180" Axis="0,1,0"/>
+                    </SplineRotation3DKeyFrame.Value>
+                </SplineRotation3DKeyFrame>
+                <SplineRotation3DKeyFrame KeyTime="00:00:04">
+                    <SplineRotation3DKeyFrame.Value>
+                        <AxisAngleRotation3D Angle="-359" Axis="0,1,0"/>
+                    </SplineRotation3DKeyFrame.Value>
+                </SplineRotation3DKeyFrame>
+            </Rotation3DAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource RotateStoryboard1}"/>
+            <BeginStoryboard Storyboard="{StaticResource RotateStoryboard2}"/>
+        </EventTrigger>
+    </Window.Triggers>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -28,5 +70,65 @@
         <Label Content="{Binding Die2.FaceValue}" Grid.Column="1" ContentStringFormat="Value: {0}" HorizontalAlignment="Center" Margin="0,65,0,0" VerticalAlignment="Top" />
         <ComboBox HorizontalAlignment="Center" Grid.Column="0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Source={StaticResource ResourceKey=enumValues}}" SelectedValue="{Binding Die1.Shape}" Margin="0,30,0,0"/>
         <ComboBox HorizontalAlignment="Center" Grid.Column="1" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Source={StaticResource ResourceKey=enumValues}}" SelectedValue="{Binding Die2.Shape}" Margin="0,30,0,0"/>
+        <Viewport3D Grid.Column="0">
+            <Viewport3D.Camera>
+                <PerspectiveCamera Position="0,4,-16" UpDirection="0,1,0" LookDirection="0,-.25,1" FieldOfView="45" NearPlaneDistance="0.125"/>
+            </Viewport3D.Camera>
+            <Viewport3D.Children>
+                <ModelVisual3D>
+                    <ModelVisual3D.Content>
+                        <DirectionalLight Color="White" Direction="0,-1,2" />
+                    </ModelVisual3D.Content>
+                </ModelVisual3D>
+                <ModelVisual3D x:Name="Die1">
+                    <ModelVisual3D.Transform>
+                        <RotateTransform3D>
+                            <RotateTransform3D.Rotation>
+                                <AxisAngleRotation3D  x:Name="rotation1" Angle="0" Axis="0,1,0" />
+                            </RotateTransform3D.Rotation>
+                        </RotateTransform3D>
+                    </ModelVisual3D.Transform>
+                    <my:Octahedron>
+                        <my:Octahedron.Material>
+                            <DiffuseMaterial>
+                                <DiffuseMaterial.Brush>
+                                    <SolidColorBrush Color="#c0007eff" />
+                                </DiffuseMaterial.Brush>
+                            </DiffuseMaterial>
+                        </my:Octahedron.Material>
+                    </my:Octahedron>
+                </ModelVisual3D>
+            </Viewport3D.Children>
+        </Viewport3D>
+        <Viewport3D Grid.Column="1">
+            <Viewport3D.Camera>
+                <PerspectiveCamera Position="0,4,-16" UpDirection="0,1,0" LookDirection="0,-.25,1" FieldOfView="45" NearPlaneDistance="0.125"/>
+            </Viewport3D.Camera>
+            <Viewport3D.Children>
+                <ModelVisual3D>
+                    <ModelVisual3D.Content>
+                        <DirectionalLight Color="White" Direction="0,-1,2" />
+                    </ModelVisual3D.Content>
+                </ModelVisual3D>
+                <ModelVisual3D x:Name="Die2">
+                    <ModelVisual3D.Transform>
+                        <RotateTransform3D>
+                            <RotateTransform3D.Rotation>
+                                <AxisAngleRotation3D  x:Name="rotation2" Angle="0" Axis="0,1,0" />
+                            </RotateTransform3D.Rotation>
+                        </RotateTransform3D>
+                    </ModelVisual3D.Transform>
+                    <my:Octahedron>
+                        <my:Octahedron.Material>
+                            <DiffuseMaterial>
+                                <DiffuseMaterial.Brush>
+                                    <SolidColorBrush Color="#c0007eff" />
+                                </DiffuseMaterial.Brush>
+                            </DiffuseMaterial>
+                        </my:Octahedron.Material>
+                    </my:Octahedron>
+                </ModelVisual3D>
+            </Viewport3D.Children>
+        </Viewport3D>
     </Grid>
 </Window>
