@@ -15,5 +15,7 @@
         <Slider x:Name="Die2" HorizontalAlignment="Left" Margin="371,69,0,0" VerticalAlignment="Top" Width="85" Value="{Binding Die2.Sides}" Minimum="{Binding Die2.MINIMUM_SIDES}" Maximum="{Binding Die2.MAXIMUM_SIDES}"/>
         <Label Content="{Binding Die1.Sides}" ContentStringFormat="Sides: {0}" HorizontalAlignment="Left" Margin="76,38,0,0" VerticalAlignment="Top"/>
         <Label Content="{Binding Die2.Sides}" ContentStringFormat="Sides: {0}" HorizontalAlignment="Left" Margin="393,38,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding Die1.FaceValue}" ContentStringFormat="Value: {0}" HorizontalAlignment="Left" Margin="93,124,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding Die2.FaceValue}" ContentStringFormat="Value: {0}" HorizontalAlignment="Left" Margin="411,124,0,0" VerticalAlignment="Top" RenderTransformOrigin="31.9,1.658"/>
     </Grid>
 </Window>

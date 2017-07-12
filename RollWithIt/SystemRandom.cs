@@ -12,6 +12,7 @@ namespace RollWithIt
     public class SystemRandom : IRandomGenerator
     {
         Random rand = new Random();
+
         /// <summary>
         /// Return a random integer within a specified range using the System Random class.
         /// </summary>

@@ -15,7 +15,8 @@ namespace RollWithIt.Tests
         [Fact]
         public void RollTestSystemRandom()
         {
-            var die = new Die();
+            var generator = new SystemRandom();
+            var die = new Die(generator);
             die.Roll();
 
             Assert.True(die.FaceValue >= 1 && die.FaceValue <= 2);            
@@ -34,7 +35,8 @@ namespace RollWithIt.Tests
         [Fact]
         public void RollTestInvalidSides()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => new Die(0));
+            var generator = new MockRandom();
+            Assert.Throws<ArgumentOutOfRangeException>(() => new Die(generator, 0));
         }
     }
 }

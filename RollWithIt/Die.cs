@@ -16,8 +16,10 @@ namespace RollWithIt
         private IRandomGenerator _generator;
         public int Sides { get; set; }
         public int? FaceValue { get; private set; }
+
         private const int _MINIMUM_SIDES = 2;
         public int MINIMUM_SIDES { get { return _MINIMUM_SIDES; } }
+
         private const int _MAXIMUM_SIDES = 20;
         public int MAXIMUM_SIDES { get { return _MAXIMUM_SIDES; } }
 
@@ -43,7 +45,7 @@ namespace RollWithIt
         /// <returns>Random side value.</returns>
         public void Roll()
         {
-            FaceValue = _generator.Next(1, Sides);
+            FaceValue = _generator.Next(1, Sides + 1);
         }
     }
 }

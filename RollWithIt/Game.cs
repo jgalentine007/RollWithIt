@@ -8,7 +8,10 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace RollWithIt
-{    
+{
+    /// <summary>
+    /// Game view model.
+    /// </summary>
     class Game : INotifyPropertyChanged 
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -33,6 +36,9 @@ namespace RollWithIt
             Shaker = new Shaker();
         }
 
+        /// <summary>
+        /// Shake the shaker.
+        /// </summary>
         public void Shake()
         {
             Shaker.Empty();
@@ -40,7 +46,5 @@ namespace RollWithIt
             Shaker.AddDie(Die2);
             Shaker.Shake();
         }
-        
-
     }
 }
