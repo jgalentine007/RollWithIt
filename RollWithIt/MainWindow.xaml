@@ -8,9 +8,6 @@
         mc:Ignorable="d"
         
         Title="RollWithIt" Height="350" Width="525">
-    <Window.DataContext>
-        <local:Game></local:Game>
-    </Window.DataContext>
     <Window.Resources>
         <ObjectDataProvider x:Key="enumValues"
    MethodName="GetValues" ObjectType="{x:Type System:Enum}">
