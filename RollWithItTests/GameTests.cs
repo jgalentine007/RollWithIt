@@ -15,7 +15,7 @@ namespace RollWithIt.Tests
         [Fact]
         public void ShakeTest()
         {
-            var generator = new MockRandom();
+            var generator = new StubRandom();
             Game game = new Game(generator);
 
             game.Shake();

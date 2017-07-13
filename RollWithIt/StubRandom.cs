@@ -9,7 +9,7 @@ namespace RollWithIt
     /// <summary>
     /// Deterministic mock random number generator.
     /// </summary>
-    public class MockRandom : IRandomGenerator
+    public class StubRandom : IRandomGenerator
     {
         public const int DEFAULT_VALUE = 1;
 

@@ -15,7 +15,7 @@ namespace RollWithIt.Tests
         [Fact]
         public void AddDieTest()
         {
-            var generator = new MockRandom();
+            var generator = new StubRandom();
             var die = new Die(generator);
             var shaker = new Shaker();
             shaker.AddDie(die);
@@ -25,18 +25,18 @@ namespace RollWithIt.Tests
         [Fact]
         public void ShakeTest()
         {
-            var generator = new MockRandom();
+            var generator = new StubRandom();
             var die = new Die(generator);
             var shaker = new Shaker();
             shaker.AddDie(die);
             shaker.Shake();
-            Assert.True(shaker.Dice.First().FaceValue == MockRandom.DEFAULT_VALUE);
+            Assert.True(shaker.Dice.First().FaceValue == StubRandom.DEFAULT_VALUE);
         }
 
         [Fact]
         public void EmptyTest()
         {
-            var generator = new MockRandom();
+            var generator = new StubRandom();
             var die = new Die(generator);
             var shaker = new Shaker();
             shaker.AddDie(die);

@@ -25,17 +25,17 @@ namespace RollWithIt.Tests
         [Fact]
         public void RollTestMockRandom()
         {
-            var generator = new MockRandom();
+            var generator = new StubRandom();
             var die = new Die(generator, DieShape.D6);
             die.Roll();
 
-            Assert.True(die.FaceValue == MockRandom.DEFAULT_VALUE);
+            Assert.True(die.FaceValue == StubRandom.DEFAULT_VALUE);
         }
 
         [Fact]
         public void RollTestInvalidSides()
         {
-            var generator = new MockRandom();
+            var generator = new StubRandom();
             Assert.Throws<ArgumentException>(() => new Die(generator, 0));
         }
     }
