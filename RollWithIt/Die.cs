@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 namespace RollWithIt
 {
+    /// <summary>
+    /// Valid dice shapes (number of sides)
+    /// </summary>
     public enum DieShape
     {
         D4 = 4,
@@ -27,10 +30,10 @@ namespace RollWithIt
         public int? FaceValue { get; private set; }
                 
         /// <summary>
-        /// Create a die with the number of specified sides. Specified sides must be great or equal to <see cref="_MINIMUM_SIDES"/>.
+        /// Create a die with the number of specified sides. .
         /// </summary>
         /// <param name="generator">Random number generator.</param>
-        /// <param name="sides">Number of sides. Unspecified default value is <see cref="_MINIMUM_SIDES"/>.</param>
+        /// <param name="sides">Number of sides. Unspecified default value is D6.</param>
         public Die(IRandomGenerator generator, DieShape shape = DieShape.D6)
         {
             if (System.Enum.IsDefined(typeof(DieShape), shape))
